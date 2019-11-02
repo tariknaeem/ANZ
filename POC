@@ -1,3 +1,11 @@
+Enable the Failover-cluster feature
+**********
+$ Install-WindowsFeature –Name Failover-Clustering –IncludeManagementTools
+
+
+
+
+***********
 to install .net3.5
 *************
 $ dism.exe /Online /Enable-Feature /FeatureName:NetFX3 /All 
