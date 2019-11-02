@@ -1,0 +1,34 @@
+to install .net3.5
+*************
+$ dism.exe /Online /Enable-Feature /FeatureName:NetFX3 /All 
+
+******************
+Add a firewall rule to open a port for the SQL Server instance, which normally runs over tcp:1433
+******************
+
+$ netsh advfirewall firewall add rule name="Open SQL Server port" dir=in action=allow protocol=TCP localport=1433
+
+*****************
+Update the node to use a static IP address and set the netmask.
+**************
+
+$ New-NetIPAddress –IPAddress <ip_address> -DefaultGateway <default_gateway> -PrefixLength <subnet_mask_in_bit_format> -InterfaceIndex (Get-NetAdapter).InterfaceIndex
+prefix length deafault is 24 
+
+**********
+Setting DNS Enrty
+*************
+Set-DNSClientServerAddress –interfaceIndex 12 –ServerAddresses (“10.0.0.1”,”10.0.0.2”
+
+Add-Computer -DomainName gontoso.com -Restart -Force -Credential gontoso.com\Administrator
+*****
+
+$ Add-Computer -DomainName gontoso.com -Restart -Force -Credential gontoso.com\Administrator
+
+****
+
+Adding and Starting Iscsi Service
+********
+
+$ Set-Service -Name msiscsi -StartupType Automatic
+$ Start-Service msiscsi
