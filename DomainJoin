@@ -1,0 +1,5 @@
+$domain = "CLOUDNATIVE.LAB"
+$password = "VMware@123" | ConvertTo-SecureString -asPlainText -Force
+$username = "$Administrator" 
+$credential = New-Object System.Management.Automation.PSCredential($username,$password)
+Add-Computer -DomainName $domain -Credential $credential
